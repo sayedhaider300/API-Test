@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var row = "";
+            $.ajax({
+                type: 'GET',
+                async: false,
+                cache: false,
+                url: '/api/Student/findStudent',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (response) {
+                    $.each(response, function (index, value) {
+                        row += '<tr><td>' + value.Id + '</td><td>' + value.Name + '</td><td>' + value.Gender + '</td><td>' + value.Address + '</td><td>' + value.MobileNumber + '</td><td>' + value.EmailId + '</td><td>' + value.DOB + '</td><td>' + value.ClassId + '</td><td>' + value.SectionId + '</td><td>' + value.Description + '</td></tr>';
+                    })
+                }
+            });
+            $("#Tbody1").html(row);
+        })
+    </script>
+</head>
+<body>
+    <table border="1">
+        <tbody id="Tbody1"></tbody>
+    </table>
+</body>
+</html>
